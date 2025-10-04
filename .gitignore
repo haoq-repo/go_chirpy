@@ -7,11 +7,13 @@
 *.dll
 *.so
 *.dylib
+go_chirpy
 
 # Test binary, built with `go test -c`
 *.test
 
 # Code coverage profiles and other test artifacts
+out
 *.out
 coverage.*
 *.coverprofile

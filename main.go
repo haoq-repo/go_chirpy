@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"sync/atomic"
+	
 	"github.com/haoq-repo/go_chirpy/internal/database"
 	"github.com/joho/godotenv"
 	// importing for side effects, not usage
@@ -16,6 +17,7 @@ type apiConfig struct {
 	fileserverHits 	atomic.Int32
 	db 				*database.Queries
 	platform		string
+	jwtSecret		string
 }
 
 func main() {
@@ -31,6 +33,10 @@ func main() {
 	platform := os.Getenv("PLATFORM")
 	if platform == "" {
 		log.Fatal("PLATFORM must be set")
+	}
+	jwtSecret := os.Getenv("JWT_SECRET")
+	if jwtSecret == "" {
+		log.Fatal("JWT_SECRET must be set")
 	}
 
 	db, err := sql.Open("postgres", dbURL)

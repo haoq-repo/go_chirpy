@@ -71,6 +71,8 @@ func main() {
 	mux.Handle("/app/", apiCfg.middlewareMetricsInc(handler))
 	mux.HandleFunc("GET /api/healthz", handlerReadiness)
 
+	mux.HandleFunc("POST /api/polka/webhooks", apiCfg.handlerWebhook)
+
 	mux.HandleFunc("POST /api/login", apiCfg.handlerUsersLogin)
 	mux.HandleFunc("POST /api/refresh", apiCfg.handlerRefresh)
 	mux.HandleFunc("POST /api/revoke", apiCfg.handlerRevoke)
